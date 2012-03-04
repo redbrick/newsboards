@@ -1,0 +1,428 @@
+/* This is all just stuff for the surrounding page. Style for the actual news
+   boards application should go into the GWT CSS resource file */
+
+*, ul, li {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+body {
+    background: #f2ece8 url('http://www.redbrick.dcu.ie/includes/images/main/bg.jpg') repeat;
+    font-family: Geneva, Helvetica, Tahoma, Arial, sans-serif; 
+    font-size: 13px;
+    text-align: center;
+    color: #272523;
+}
+
+p {
+    margin: 16px 16px 10px 0;
+    font-size: 13px;
+    font-family: 'Istok Web', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 16px; 
+    color: #272523;
+}
+a {
+    color: #2e658f;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h2, h3 {
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+    color: #a30000;
+}
+.clear {
+    clear: both;
+    height: 0px;
+}
+
+.hide {
+    display: none;
+}
+
+/*Form Stuff */
+.button {
+    color: #ffe9e9;
+    font-weight: bold;
+    margin: 0 0 0 4px;
+    background: #c72424;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#c72424), to(#c71a1a));
+    background: -webkit-linear-gradient(#c72424, #c71a1a);
+    background: -moz-linear-gradient(#c72424, #c71a1a);
+    background: -ms-linear-gradient(#c72424, #c71a1a);
+    background: -o-linear-gradient(#c72424, #c71a1a);
+    background: linear-gradient(#c72424, #c71a1a);
+    -pie-background: linear-gradient(#c72424, #c71a1a);
+    behavior: url(PIE.php);
+    
+}
+.button:hover {
+    background: #9F2323;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#9F2323), to(#8A1414));
+    background: -webkit-linear-gradient(#9F2323, #8A1414);
+    background: -moz-linear-gradient(#9F2323, #8A1414);
+    background: -ms-linear-gradient(#9F2323, #8A1414);
+    background: -o-linear-gradient(#9F2323, #8A1414);
+    background: linear-gradient(#9F2323, #8A1414);
+    -pie-background: linear-gradient(#9F2323, #8A1414);
+    behavior: url(PIE.php);
+}
+
+
+
+
+#container {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+#logo {
+    padding: 34px 0 0 20px;
+    float: left;
+}
+#uppernav {
+    float: right;
+}
+#search_container {
+    float: right;
+    background: #49443f;
+    padding: 8px;
+    -webkit-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-radius: 0px 0px 6px 6px;
+    behavior: url(PIE.php);
+    /*Temp hidden until feature is implemented*/
+    visibility:hidden;
+}
+.search_area {
+    padding: 4px 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url(PIE.php);
+}
+
+#welcome_buttons {
+    float: right;
+    clear: both;
+    margin-top: 24px;
+    margin-right: 1px;
+    width: 500px;
+}
+
+#welcome_buttons ul {
+    list-style-type: none;
+    float: right;
+}
+
+#welcome_buttons li {
+    float: left;
+}
+#welcome_buttons li a {
+    display: block;
+    width: 70px;
+    margin-left: 14px;
+}   
+#welcome_buttons li a:hover > .text, #welcome_buttons li a:hover {
+    text-decoration: none;
+    color: #222;
+}
+#welcome_buttons li .icon {
+    display: block;
+    height: 50px;
+}
+#welcome_buttons li #web_manager_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/web_manager.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #webmail_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/webmail.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #downloads_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/downloads.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #boards_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/boards.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #wiki_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/wiki.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #help_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/help.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li #tutorials_link {
+    background-image: url('http://www.redbrick.dcu.ie/includes/images/main/icons/tutorials.png');
+    background-repeat: no-repeat;
+    background-position:center bottom;
+}
+#welcome_buttons li a:hover > #tutorials_link, #welcome_buttons li a:hover > #help_link, #welcome_buttons li a:hover > #wiki_link, #welcome_buttons li a:hover > #boards_link, #welcome_buttons li a:hover > #web_manager_link, #welcome_buttons li a:hover > #webmail_link, #welcome_buttons li a:hover > #downloads_link{
+    background-position: center top;
+}
+#welcome_buttons li a .text {
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #444;
+    text-shadow: 0px 1px 0px #fff;
+}
+
+/*SITE NAV */
+#parent_nav {
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: -3px;
+    width: 100%;
+    background: #49443f;
+    height: 30px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-radius: 4px 4px 0px 0px;
+    behavior: url(PIE.php);
+    padding: 0 0 3px 0;
+}
+#parent_nav ul {
+    list-style-type: none;
+}
+#parent_nav li {
+    float: left;
+}
+#parent_nav li a {
+    display: block;
+    color: #f2ece8;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 7px 14px;
+    margin: 0 6px 0 0;
+    text-shadow: 0px 1px 0px #333;
+    text-transform: capitalize;
+}
+#parent_nav li a:hover {
+    text-decoration: underline;
+}
+#parent_nav li a.selected {
+    font-weight: bold;
+    background: #cfcac6;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-radius: 4px 4px 0px 0px;
+    text-shadow: 0px 1px 0px #eee;
+    color: #a30000;
+    margin-top: -4px;
+    padding-top: 11px;
+}
+#parent_nav li a.selected:hover {
+    text-decoration: none;
+}
+.child_nav {
+    clear: both;
+    float: left;
+    width: 960px;
+    background: #cfcac6;
+    min-height: 32px;
+}
+.child_nav ul {
+    list-style-type: none;
+    float: left;
+}
+
+.child_nav li {
+    float: left;
+}
+
+.child_nav li a {
+    display: block;
+    color: #49434f;
+    font-size: 13px;
+    padding: 7px 14px;
+    margin: 0 6px 0 0;
+    text-shadow: 0px 1px 0px #ddd;
+    
+}
+.child_nav li a.selected {
+    font-weight: bold;
+    color: #49443f;
+    text-shadow: 0px 1px 0px #eee;
+}
+
+
+
+
+/*MAIN SECTION */
+
+.content {
+    float: left;
+    background: #fff;
+    padding: 8px 36px 16px 16px;
+    width: 908px;
+    -moz-box-shadow: 0px 0px 10px #ccc;
+    -webkit-box-shadow: 0px 0px 10px #ccc;
+    box-shadow: 0px 0px 10px #ccc;
+    
+}
+.content h2 {
+    margin: 8px 0 0 0;
+}
+.content p {
+    
+}
+
+.content .breadcrumb {
+    font-size: 11px;
+    color: #999;
+    text-transform: capitalize;
+}
+.content .breadcrumb a {
+    color: #4e85af;
+}
+.content .meta p{
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 10px 10px;
+}
+.content h4 {
+    margin: 14px 10px 6px 0;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+.content ul, .content ol {
+    margin-left: 36px;
+}
+.content li {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    line-height: 18px; 
+    color: #272523;
+}
+.content form {
+    width: 700px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+}
+.content form input, .content form textarea {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+}
+
+.content form input[type=submit] {
+    display: block;
+    padding: 6px 12px;
+    text-align: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #a60000;
+    color: #ffe9e9;
+    font-weight: bold;
+    margin: 0 0 0 10px;
+    background: #c72424;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#c72424), to(#c71a1a));
+    background: -webkit-linear-gradient(#c72424, #c71a1a);
+    background: -moz-linear-gradient(#c72424, #c71a1a);
+    background: -ms-linear-gradient(#c72424, #c71a1a);
+    background: -o-linear-gradient(#c72424, #c71a1a);
+    background: linear-gradient(#c72424, #c71a1a);
+}
+.content form dd {
+    margin-bottom: 10px;
+}
+.content form dd .errors, .content form dd .errors li {
+    list-style-type: none;
+    color: #990000;
+}
+.content form dt label{
+    color: #444;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+.content ul#news_feed {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.content ul#news_feed li{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+}
+.content ul#news_feel li a h2{
+    color: #a30000;
+}
+.content ul#news_feel li a h2:hover {
+    text-decoration: none;
+}
+.content .form_to {
+    display: block;
+    font-size: 14px;
+    color: #a30000;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.content .download_box {
+    width: 260px;
+    float: left;
+    min-height: 194px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    margin-right: 10px;
+}
+.content .download_box a img {
+    text-align: center;
+    margin: 0 auto;
+}
+.content .meta {
+    color: #999;
+    font-size: 11px;
+    margin-left: 4px;
+}
+.entry h2 {
+    font-size: 15px;
+}
+
+.entry a {
+    color: #2e658f;
+}
+.content .news_image {
+    float:right;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    margin: 0 10px 10px 10px;
+    padding: 5px;
+}

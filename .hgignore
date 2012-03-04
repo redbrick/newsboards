@@ -1,0 +1,13 @@
+syntax: glob
+./war/WEB-INF/deploy
+./war/newsboards
+./tmp/
+./.settings
+./.project
+./.gwt
+./.classpath
+.DS_Store
+*.gwt.rpc
+*.nocache.js
+*.cache.js
+*.class
