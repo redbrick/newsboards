@@ -5,6 +5,7 @@ import ie.dcu.redbrick.newsboards.client.home.view.HomeView;
 import ie.dcu.redbrick.newsboards.client.home.view.HomeViewImpl;
 import ie.dcu.redbrick.newsboards.shared.main.NntpServiceAsync;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.mvp4g.client.annotation.Presenter;
@@ -23,7 +24,7 @@ public class HomePresenter extends BasePresenter<HomeView, HomeEventBus> {
             }
 
             public void onSuccess(String result) {
-                
+                GWT.log(result);
             }
             
         });

@@ -13,7 +13,7 @@ public class UserDao extends NewsboardsDao<UserModel> {
 
         public UserModel getModel(ResultSet rs) throws SQLException {
             UserModel u = new UserModel();
-            u.setId(rs.getInt("id"));
+            u.setId(rs.getLong("id"));
             u.setUsername(rs.getString("username"));
             u.setDisplayName(rs.getString("display_name"));
             return u;

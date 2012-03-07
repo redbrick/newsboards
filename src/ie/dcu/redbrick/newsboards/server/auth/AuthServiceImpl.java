@@ -25,8 +25,16 @@ public class AuthServiceImpl implements AuthService {
     }
 
     public UserModel getUserModel() {
-        // TODO Auto-generated method stub
-        return null;
+        UserModel model = userDao.findByUsername(username.get());
+        
+        if (model == null) {
+            model = new UserModel();
+            model.setUsername(username.get());
+            model.setDisplayName(username.get());
+            model = userDao.create(model);
+        }
+        
+        return model;
     }
 
     public void setUsername(String username) {

@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import ie.dcu.redbrick.newsboards.shared.Model;
 import ie.dcu.redbrick.newsboards.shared.nntp.NewsgroupModel;
 
-public class UserModel extends Model<Integer> {
+public class UserModel extends Model<Long> {
 
     private static final long serialVersionUID = -1066535714940681245L;
-    private Integer id;
+    private Long id;
     private String username;
     private String displayName;
     private ArrayList<NewsgroupModel> newsGroups;
     
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -33,7 +33,7 @@ public class UserModel extends Model<Integer> {
         this.displayName = displayName;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

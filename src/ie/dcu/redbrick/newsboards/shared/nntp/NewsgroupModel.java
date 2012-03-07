@@ -3,9 +3,9 @@ package ie.dcu.redbrick.newsboards.shared.nntp;
 import ie.dcu.redbrick.newsboards.shared.Model;
 
 
-public class NewsgroupModel extends Model<Integer> {
+public class NewsgroupModel extends Model<Long> {
     private static final long serialVersionUID = 4951662735243156542L;
-    private Integer id; // database id
+    private Long id; // database id
     private String name;
     private String description;
     private String displayName;
@@ -31,11 +31,11 @@ public class NewsgroupModel extends Model<Integer> {
         this.articleCount = articleCount;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -30,7 +30,7 @@ public class NntpServiceImpl extends RemoteServiceServlet implements
     private AuthService authService;
     
     public String getMessage() {
-        return authService.getUsername();
+        return authService.getUserModel().getUsername();
     }
 
     public ArrayList<NewsgroupModel> getGroupList() throws NntpException {

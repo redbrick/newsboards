@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -241,7 +242,7 @@ public abstract class BaseDao<T extends Model<U>, U> {
         }
     }
     
-    public void create(T object) {
+    public T create(T object) {
         Map<String, Object> map = getRowMapper().getMap(object);
         ArrayList<String> keys = new ArrayList<String>(map.keySet());
         
@@ -279,20 +280,35 @@ public abstract class BaseDao<T extends Model<U>, U> {
         qb.append(")");
         
         PreparedStatement stmt = null;
+        ResultSet genKeys = null;
         try {
             String query = qb.toString();
             logger.debug("Querying with " + query);
-             stmt = getConnection().prepareStatement(query);
+             stmt = getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
              
              for (int i = 0;i < params.size();i++) {
                  setUnknownParameter(stmt, i + 1, params.get(i));
              }
              
              stmt.executeUpdate();
+             
+             genKeys = stmt.getGeneratedKeys();
+             genKeys.next();
+             
+             object.setId((U)genKeys.getObject(1));
+             
+             genKeys.close();
+             
+             return object;
         } catch (SQLException e) {
             logger.error("Error executing update", e);
+            return null;
         } finally {
             try {
+                if (genKeys != null) {
+                    genKeys.close();
+                }
+                
                 if (stmt != null) {
                     stmt.close();
                 }

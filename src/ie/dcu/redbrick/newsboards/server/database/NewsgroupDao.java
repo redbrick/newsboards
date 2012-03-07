@@ -15,7 +15,7 @@ public class NewsgroupDao extends NewsboardsDao<NewsgroupModel> {
         public NewsgroupModel getModel(ResultSet rs) throws SQLException {
             NewsgroupModel ng = new NewsgroupModel();
             
-            ng.setId(rs.getInt("id"));
+            ng.setId(rs.getLong("id"));
             ng.setName(rs.getString("name"));
             ng.setDisplayName(rs.getString("display_name"));
             ng.setDescription(rs.getString("description"));
