@@ -2,6 +2,7 @@ package ie.dcu.redbrick.newsboards.server.main;
 
 import java.util.ArrayList;
 
+import ie.dcu.redbrick.newsboards.server.auth.AuthService;
 import ie.dcu.redbrick.newsboards.server.nntp.NewsgroupInfo2NewsgroupModel;
 import ie.dcu.redbrick.newsboards.server.nntp.NntpSession;
 import ie.dcu.redbrick.newsboards.shared.main.NntpService;
@@ -25,8 +26,11 @@ public class NntpServiceImpl extends RemoteServiceServlet implements
     @Inject
     private NewsgroupInfo2NewsgroupModel newsgroupInfoConverter;
     
+    @Inject
+    private AuthService authService;
+    
     public String getMessage() {
-        return "hello";
+        return authService.getUsername();
     }
 
     public ArrayList<NewsgroupModel> getGroupList() throws NntpException {
