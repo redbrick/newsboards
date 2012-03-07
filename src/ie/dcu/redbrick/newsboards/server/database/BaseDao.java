@@ -46,7 +46,7 @@ public abstract class BaseDao<T extends Model<U>, U> {
      * @return table name
      */
     protected abstract String getTableName();
-    
+        
     /**
      * Return the JNDI data source name for this DAO to use.
      * 
@@ -63,7 +63,7 @@ public abstract class BaseDao<T extends Model<U>, U> {
     protected abstract RowMapper<T> getRowMapper();
     
     protected String getIdColumnName() {
-        return "Id";
+        return "id";
     }
     
     protected Connection getConnection() {
@@ -129,7 +129,6 @@ public abstract class BaseDao<T extends Model<U>, U> {
                 }
             } catch (SQLException e) {}
         }
-        
     }
     
     public void delete(T model) {
@@ -243,7 +242,63 @@ public abstract class BaseDao<T extends Model<U>, U> {
     }
     
     public void create(T object) {
+        Map<String, Object> map = getRowMapper().getMap(object);
+        ArrayList<String> keys = new ArrayList<String>(map.keySet());
         
+        StringBuilder qb = new StringBuilder();
+        qb.append("INSERT INTO ");
+        qb.append(getTableName());
+        qb.append(" (");
+        
+        boolean first = true;
+        
+        StringBuilder paramBuilder = new StringBuilder();
+        List<Object> params = new ArrayList<Object>();
+        
+        for (String key:keys) {
+            if (!key.equals(getIdColumnName()) || map.get(key) != null) {
+                if (!first) {
+                    paramBuilder.append(", ");
+                    qb.append(", ");
+                }
+                first = false;
+                qb.append("`");
+                qb.append(key);
+                qb.append("`");
+                
+                paramBuilder.append("?");
+                
+                params.add(map.get(key));
+            }
+        }
+        
+        first = true;
+        
+        qb.append(") VALUES (");
+        qb.append(paramBuilder.toString());
+        qb.append(")");
+        
+        PreparedStatement stmt = null;
+        try {
+            String query = qb.toString();
+            logger.debug("Querying with " + query);
+             stmt = getConnection().prepareStatement(query);
+             
+             for (int i = 0;i < params.size();i++) {
+                 setUnknownParameter(stmt, i + 1, params.get(i));
+             }
+             
+             stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("Error executing update", e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            }
+            catch (SQLException e) {}
+        }
     }
     
     protected static void setUnknownParameter(PreparedStatement stmt, int index, Object parameter) 
