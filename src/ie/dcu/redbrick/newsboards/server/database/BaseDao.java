@@ -1,13 +1,12 @@
 package ie.dcu.redbrick.newsboards.server.database;
 
-import ie.dcu.redbrick.newsboards.shared.nntp.Model;
+import ie.dcu.redbrick.newsboards.shared.Model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +39,27 @@ public abstract class BaseDao<T extends Model<U>, U> {
         }
     }
     
+    /**
+     * Return the table name for this DAO. This should be a constant string,
+     * it is injected directly into SQL queries without being filtered.
+     * 
+     * @return table name
+     */
     protected abstract String getTableName();
     
+    /**
+     * Return the JNDI data source name for this DAO to use.
+     * 
+     * @return jndi dsn
+     */
     protected abstract String getDsn();
     
+    /**
+     * Return a RowMapper for this DAO to convert to/from result sets and
+     * model objects.
+     * 
+     * @return row mapper
+     */
     protected abstract RowMapper<T> getRowMapper();
     
     protected String getIdColumnName() {

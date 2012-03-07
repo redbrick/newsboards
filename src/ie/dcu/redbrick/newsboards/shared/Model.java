@@ -1,4 +1,4 @@
-package ie.dcu.redbrick.newsboards.shared.nntp;
+package ie.dcu.redbrick.newsboards.shared;
 
 import java.io.Serializable;
 

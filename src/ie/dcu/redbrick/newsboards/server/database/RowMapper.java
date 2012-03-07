@@ -1,6 +1,6 @@
 package ie.dcu.redbrick.newsboards.server.database;
 
-import ie.dcu.redbrick.newsboards.shared.nntp.Model;
+import ie.dcu.redbrick.newsboards.shared.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

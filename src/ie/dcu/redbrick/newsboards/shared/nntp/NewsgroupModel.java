@@ -1,5 +1,7 @@
 package ie.dcu.redbrick.newsboards.shared.nntp;
 
+import ie.dcu.redbrick.newsboards.shared.Model;
+
 
 public class NewsgroupModel extends Model<Integer> {
     private static final long serialVersionUID = 4951662735243156542L;

@@ -1,7 +1,8 @@
 syntax: glob
 ./war/WEB-INF/deploy
 ./war/newsboards
-./tmp/
+./war/WEB-INF/classes
+./tmp
 ./.settings
 ./.project
 ./.gwt
