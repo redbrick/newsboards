@@ -3,7 +3,7 @@ package ie.dcu.redbrick.newsboards.client.main.presenter;
 import ie.dcu.redbrick.newsboards.client.eventbus.MainEventBus;
 import ie.dcu.redbrick.newsboards.client.view.MainView;
 import ie.dcu.redbrick.newsboards.client.view.MainViewImpl;
-import ie.dcu.redbrick.newsboards.shared.main.NntpServiceAsync;
+import ie.dcu.redbrick.newsboards.shared.nntp.NntpServiceAsync;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.Inject;

@@ -1,6 +1,5 @@
-package ie.dcu.redbrick.newsboards.shared.main;
+package ie.dcu.redbrick.newsboards.shared.nntp;
 
-import ie.dcu.redbrick.newsboards.shared.nntp.NewsgroupModel;
 
 import java.util.ArrayList;
 

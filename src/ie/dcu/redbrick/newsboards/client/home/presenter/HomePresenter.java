@@ -1,11 +1,13 @@
 package ie.dcu.redbrick.newsboards.client.home.presenter;
 
+import java.util.ArrayList;
+
 import ie.dcu.redbrick.newsboards.client.home.HomeEventBus;
 import ie.dcu.redbrick.newsboards.client.home.view.HomeView;
 import ie.dcu.redbrick.newsboards.client.home.view.HomeViewImpl;
-import ie.dcu.redbrick.newsboards.shared.main.NntpServiceAsync;
+import ie.dcu.redbrick.newsboards.shared.nntp.NewsgroupModel;
+import ie.dcu.redbrick.newsboards.shared.nntp.NntpServiceAsync;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.mvp4g.client.annotation.Presenter;
@@ -17,14 +19,16 @@ public class HomePresenter extends BasePresenter<HomeView, HomeEventBus> {
     private NntpServiceAsync service;
     
     public void onGoHome() {
-        service.getMessage(new AsyncCallback<String>() {
+        
+        service.getGroupList(new AsyncCallback<ArrayList<NewsgroupModel>>() {
 
             public void onFailure(Throwable caught) {
-                
             }
 
-            public void onSuccess(String result) {
-                GWT.log(result);
+            public void onSuccess(ArrayList<NewsgroupModel> result) {
+                for (NewsgroupModel model:result) {
+                    getView().addGroup(model.getName(), model.getName(), model.getSubscribed());
+                }
             }
             
         });

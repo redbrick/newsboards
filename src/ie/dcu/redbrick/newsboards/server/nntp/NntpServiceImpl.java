@@ -1,13 +1,13 @@
-package ie.dcu.redbrick.newsboards.server.main;
+package ie.dcu.redbrick.newsboards.server.nntp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ie.dcu.redbrick.newsboards.server.auth.AuthService;
-import ie.dcu.redbrick.newsboards.server.nntp.NewsgroupInfo2NewsgroupModel;
-import ie.dcu.redbrick.newsboards.server.nntp.NntpSession;
-import ie.dcu.redbrick.newsboards.shared.main.NntpService;
+import ie.dcu.redbrick.newsboards.server.database.NewsgroupDao;
 import ie.dcu.redbrick.newsboards.shared.nntp.NewsgroupModel;
 import ie.dcu.redbrick.newsboards.shared.nntp.NntpException;
+import ie.dcu.redbrick.newsboards.shared.nntp.NntpService;
 
 import com.google.common.collect.Lists;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -27,14 +27,34 @@ public class NntpServiceImpl extends RemoteServiceServlet implements
     private NewsgroupInfo2NewsgroupModel newsgroupInfoConverter;
     
     @Inject
+    private NewsgroupDao newsgroupDao;
+    
+    @Inject
     private AuthService authService;
     
     public String getMessage() {
         return authService.getUserModel().getUsername();
     }
 
+    /**
+     * Returns a list of groups on the nntp server, with the subscribed
+     * flag set to true where appropriate.
+     */
     public ArrayList<NewsgroupModel> getGroupList() throws NntpException {
-        return Lists.newArrayList(Lists.transform(getSession().listNewsgroups(), newsgroupInfoConverter));
+        ArrayList<NewsgroupModel> groups = Lists.newArrayList(Lists.transform(getSession().listNewsgroups(),
+                newsgroupInfoConverter));
+        
+        List<NewsgroupModel> userGroups = newsgroupDao.findByUser(authService.getUserModel());
+        
+        for (NewsgroupModel group:groups) {
+            if (userGroups.contains(group)) {
+                group.setSubscribed(true);
+            } else {
+                group.setSubscribed(false);
+            }
+        }
+        
+        return groups;
     }
     
     protected NntpSession getSession() {

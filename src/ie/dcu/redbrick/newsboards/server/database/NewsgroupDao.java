@@ -49,7 +49,7 @@ public class NewsgroupDao extends NewsboardsDao<NewsgroupModel> {
         		+ " ng.display_name AS display_name,"
                 + " ng.description AS description"
                 + " FROM User_Newsgroup un"
-                + " INNER JOIN Newsgroup ON un.newsgroup_id = ng.id"
+                + " INNER JOIN Newsgroup ng ON un.newsgroup_id = ng.id"
                 + " WHERE un.user_id = ?";
         return findByQuery(query, userModel.getId());
     }

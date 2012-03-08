@@ -8,23 +8,25 @@ import ie.dcu.redbrick.newsboards.shared.users.UserModel;
 public class AuthServiceImpl implements AuthService {
 
     private ThreadLocal<String> username;
+    private ThreadLocal<UserModel> userModel;
     
     @Inject
     private UserDao userDao;
     
     public AuthServiceImpl() {
         username = new ThreadLocal<String>();
-        
+        userModel = new ThreadLocal<UserModel>();
     }
+    
     public String getUsername() {
-        if (username.get() == null) {
-            return "test";
-        } else {
-            return username.get();
-        }
+        return username.get();
     }
 
     public UserModel getUserModel() {
+        if (userModel.get() != null) {
+            return userModel.get();
+        }
+        
         UserModel model = userDao.findByUsername(username.get());
         
         if (model == null) {
@@ -34,11 +36,14 @@ public class AuthServiceImpl implements AuthService {
             model = userDao.create(model);
         }
         
+        userModel.set(model);
+        
         return model;
     }
 
     public void setUsername(String username) {
         this.username.set(username);
+        this.userModel.set(null);
     }
 
 }
