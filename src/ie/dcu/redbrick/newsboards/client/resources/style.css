@@ -1,0 +1,32 @@
+
+.ng-HomePage-MainSplit {
+	width : 100%;
+}
+
+.ng-HomePage-MainSplit td {
+    width : 50%;
+}
+
+.ng-HomePage-LeftOuterPanel {
+	width : 100%;
+}
+
+.ng-HomePage-RightOuterPanel {
+	width : 100%;
+}
+
+.ng-HomePage-SubscribedPanel {
+	background-color : #efeae6;
+	width : 100%;
+	-moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.ng-Main-Username {
+	color: #49434F;
+    display: block;
+    font-size: 13px;
+    margin: 0 6px 0 0;
+    padding: 7px 14px;
+    text-shadow: 0 1px 0 #DDDDDD;
+}

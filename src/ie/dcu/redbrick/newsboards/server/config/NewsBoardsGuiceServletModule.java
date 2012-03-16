@@ -6,6 +6,7 @@ import ie.dcu.redbrick.newsboards.server.auth.SetUserFilter;
 import ie.dcu.redbrick.newsboards.server.nntp.NntpServiceImpl;
 import ie.dcu.redbrick.newsboards.server.nntp.NntpSession;
 import ie.dcu.redbrick.newsboards.server.nntp.NntpSessionImpl;
+import ie.dcu.redbrick.newsboards.server.users.UserServiceImpl;
 
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
@@ -19,5 +20,6 @@ public class NewsBoardsGuiceServletModule extends ServletModule {
         
         filter("/newsboards/*").through(SetUserFilter.class);
         serve("/newsboards/nntpservice").with(NntpServiceImpl.class);
+        serve("/newsboards/userservice").with(UserServiceImpl.class);
     }
 }

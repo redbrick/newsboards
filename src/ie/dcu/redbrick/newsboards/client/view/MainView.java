@@ -7,4 +7,5 @@ public interface MainView {
     InsertPanel.ForIsWidget getContentPanel();
     void clearContentPanel();
     void clearNavigation();
+    void setUsername(String username);
 }

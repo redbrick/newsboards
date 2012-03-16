@@ -27,7 +27,7 @@ public class HomePresenter extends BasePresenter<HomeView, HomeEventBus> {
 
             public void onSuccess(ArrayList<NewsgroupModel> result) {
                 for (NewsgroupModel model:result) {
-                    getView().addGroup(model.getName(), model.getName(), model.getSubscribed());
+                    //getView().addGroup(model.getName(), model.getName(), model.getSubscribed());
                 }
             }
             

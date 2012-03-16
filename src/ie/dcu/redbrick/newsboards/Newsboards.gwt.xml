@@ -2,7 +2,10 @@
 <module rename-to='newsboards'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
-
+  <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.i18n.CldrLocales"/>
+  <inherits name="com.google.gwt.resources.Resources" />
+  
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->
@@ -21,4 +24,9 @@
   <source path='client'/>
   <source path='shared'/>
 
+  <!-- Locales -->
+  <extend-property name="locale" values="en"/>
+  
+  <!-- Default to English -->
+  <set-property-fallback name="locale" value="en"/>
 </module>
