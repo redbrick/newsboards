@@ -1,0 +1,71 @@
+<project default="war">
+    <property name="build.dir" value="build" />
+    <property name="classes.dir" value="${build.dir}/web/WEB-INF/classes" />
+    <property name="src.dir" value="src" />
+    <property name="dist.dir" value="dist" />
+    <property name="lib.dir" value="lib" />
+    <property name="web.dir" value="war" />
+    <property name="webinf.dir" value="${web.dir}/WEB-INF" />
+    <property name="output.filename" value="newsboards.war" />
+
+    <path id="compile.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+    
+    <target name="clean">
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac destdir="${classes.dir}" debug="true">
+            <classpath refid="compile.classpath" />
+            <src path="${src.dir}" />
+        </javac>
+    </target>
+
+    <target name="client-compile" depends="compile" description="GWT compile to JavaScript">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+        <classpath>
+            <pathelement location="${classes.dir}" />
+            <pathelement location="${src.dir}" />
+            <path refid="compile.classpath" />
+        </classpath>
+        <jvmarg value="-Xmx256M" />
+        <arg value="-war" />
+        <arg value="${build.dir}/web" />
+        <arg value="ie.dcu.redbrick.newsboards.Newsboards" />
+        </java>
+        <copy todir="${build.dir}/web">
+            <fileset dir="${web.dir}">
+                <include name="Newsboards.html" />
+                <include name="Newsboards.css" />
+                <include name="images/**" />
+            </fileset>
+        </copy>
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}">
+                <include name="newsboards.properties" />
+                <include name="log4j.properties" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="war" depends="compile,client-compile">
+        <war destfile="${dist.dir}/${output.filename}" webxml="${webinf.dir}/web.xml">
+            <fileset dir="${build.dir}/web" />
+            <lib dir="${lib.dir}">
+                <exclude name="gwt-user.jar" />
+                <exclude name="gwt-dev.jar" />
+            </lib>
+            <classes dir="${classes.dir}" />
+       </war>
+    </target>
+</project>
