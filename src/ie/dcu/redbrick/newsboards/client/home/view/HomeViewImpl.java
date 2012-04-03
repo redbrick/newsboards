@@ -1,6 +1,7 @@
 package ie.dcu.redbrick.newsboards.client.home.view;
 
 import ie.dcu.redbrick.newsboards.client.home.widgets.SubscribedGroupBox;
+import ie.dcu.redbrick.newsboards.client.home.widgets.SubscribedGroupBoxImpl;
 import ie.dcu.redbrick.newsboards.client.resources.NgCssResource;
 import ie.dcu.redbrick.newsboards.client.resources.NgResources;
 import ie.dcu.redbrick.newsboards.client.view.widgets.H2;
@@ -16,7 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class HomeViewImpl extends Composite implements HomeView {
     private FlowPanel panel;
     private HorizontalPanel horizontalPanel;
-    private VerticalPanel subscribedListPanel;
+    private FlowPanel subscribedListPanel;
     private VerticalPanel availableListPanel;
     
     private FlowPanel groupList;
@@ -27,7 +28,7 @@ public class HomeViewImpl extends Composite implements HomeView {
     public HomeViewImpl() {
         panel = new FlowPanel();
         
-        subscribedListPanel = new VerticalPanel();
+        subscribedListPanel = new FlowPanel();
         subscribedListPanel.addStyleName(css.homepageLeftOuterPanel());
         
         availableListPanel = new VerticalPanel();
@@ -37,7 +38,6 @@ public class HomeViewImpl extends Composite implements HomeView {
         availableListPanel.add(new H3(i18n.availableGroups()));
         
         horizontalPanel = new HorizontalPanel();
-        horizontalPanel.setSpacing(20);
         horizontalPanel.addStyleName(css.homepageMainSplit());        
         horizontalPanel.add(subscribedListPanel);
         horizontalPanel.add(availableListPanel);
@@ -49,10 +49,13 @@ public class HomeViewImpl extends Composite implements HomeView {
         panel.add(groupList);
         
         
-        subscribedListPanel.add(new SubscribedGroupBox());
         initWidget(panel);
     }
-    
-    
-    
+
+    public SubscribedGroupBox addSubscribedGroupBox(String name,
+            String description) {
+        SubscribedGroupBoxImpl box = new SubscribedGroupBoxImpl(name, description);
+        subscribedListPanel.add(box);
+        return box;
+    }
 }

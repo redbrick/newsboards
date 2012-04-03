@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS User_Newsgroup;
+DROP TABLE IF EXISTS Newsgroup;
+DROP TABLE IF EXISTS User;
+
 CREATE TABLE User (
     id int not null auto_increment,
     username varchar(255) not null,
@@ -19,3 +23,10 @@ CREATE TABLE User_Newsgroup (
     foreign key (user_id) references User(id),
     foreign key (newsgroup_id) references Newsgroup(id)
 ) ENGINE=InnoDB;
+
+INSERT INTO Newsgroup (name, display_name, description) VALUES
+    ('redbrick.babble', 'Babble', 'Yack yack yack'),
+    ('redbrick.announce', 'Announce', 'Society Announcements'),
+    ('redbrick.things.we.hate', 'Things we hate', 'Hated things'),
+    ('redbrick.things.we.love', 'Things we love', 'Loved things'),
+    ('redbrick.humour.tasteless', 'Tasteless', 'The only sort of humour');

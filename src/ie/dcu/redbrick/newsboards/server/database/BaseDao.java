@@ -194,6 +194,28 @@ public abstract class BaseDao<T extends Model<U>, U> {
         }
     }
     
+    protected void updateByQuery(String query, Object... params) {
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = getConnection().prepareStatement(query);
+            
+            for (int i = 0;i < params.length;i++) {
+                setUnknownParameter(stmt, i + 1, params[i]);
+            }
+            
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("Error querying database", e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException e) {}
+        }
+    }
+    
     public void update(T object) {
         StringBuilder qb = new StringBuilder();
         qb.append("UPDATE ");

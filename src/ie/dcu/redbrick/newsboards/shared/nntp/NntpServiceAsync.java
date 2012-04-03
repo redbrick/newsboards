@@ -6,6 +6,6 @@ import java.util.ArrayList;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface NntpServiceAsync {
-    void getMessage(AsyncCallback<String> callback);
     void getGroupList(AsyncCallback<ArrayList<NewsgroupModel>> callback);
+    void subscribe(NewsgroupModel group, AsyncCallback<Void> callback);
 }

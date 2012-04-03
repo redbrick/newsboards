@@ -10,6 +10,8 @@ import ie.dcu.redbrick.newsboards.shared.nntp.NewsgroupModel;
 import ie.dcu.redbrick.newsboards.shared.users.UserModel;
 
 public class NewsgroupDao extends NewsboardsDao<NewsgroupModel> {
+    public static final String USER_LINK_NAME = "User_Newsgroup";
+    
     private RowMapper<NewsgroupModel> rowMapper = new RowMapper<NewsgroupModel>() {
 
         public NewsgroupModel getModel(ResultSet rs) throws SQLException {
@@ -49,8 +51,30 @@ public class NewsgroupDao extends NewsboardsDao<NewsgroupModel> {
         		+ " ng.display_name AS display_name,"
                 + " ng.description AS description"
                 + " FROM User_Newsgroup un"
-                + " INNER JOIN Newsgroup ng ON un.newsgroup_id = ng.id"
+                + " INNER JOIN " + getTableName() + " ng ON un.newsgroup_id = ng.id"
                 + " WHERE un.user_id = ?";
         return findByQuery(query, userModel.getId());
+    }
+    
+    public void subscribeUser(NewsgroupModel newsgroup, UserModel user) {
+        String query = "INSERT INTO User_Newsgroup (user_id, newsgroup_id)"
+                + " VALUES (?, ?)";
+        
+        
+        updateByQuery(query, user.getId(), newsgroup.getId());
+    }
+    
+    public NewsgroupModel findByName(String name) {
+        String query = "SELECT *"
+                + " FROM " + getTableName()
+                + " WHERE name = ?"
+                + " LIMIT 1";
+        
+        List<NewsgroupModel> result = findByQuery(query, name);
+        if (result.size() > 0) {
+            return result.get(0);
+        } else {
+            return null;
+        }
     }
 }

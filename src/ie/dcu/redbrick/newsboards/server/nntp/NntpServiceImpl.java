@@ -31,10 +31,6 @@ public class NntpServiceImpl extends RemoteServiceServlet implements
     
     @Inject
     private AuthService authService;
-    
-    public String getMessage() {
-        return authService.getUserModel().getUsername();
-    }
 
     /**
      * Returns a list of groups on the nntp server, with the subscribed
@@ -55,6 +51,30 @@ public class NntpServiceImpl extends RemoteServiceServlet implements
         }
         
         return groups;
+    }
+    
+    public Void subscribe(NewsgroupModel group) throws NntpException {
+        String name = group.getName();
+        group = newsgroupDao.findByName(name);
+        
+        if (group == null) {
+            // check that the group exists
+            ArrayList<NewsgroupModel> groups = Lists.newArrayList(Lists.transform(getSession().listNewsgroups(),
+                    newsgroupInfoConverter));
+            
+            for (NewsgroupModel current:groups) {
+                if (current.getName().equals(name)) {
+                    group = newsgroupDao.create(current);
+                }
+            }
+        }
+        
+        if (group == null) {
+            throw new NntpException("Group doesn't exist");
+        }
+        
+        newsgroupDao.subscribeUser(group, authService.getUserModel());
+        return null;
     }
     
     protected NntpSession getSession() {

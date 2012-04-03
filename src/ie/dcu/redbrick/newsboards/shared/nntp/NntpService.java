@@ -8,7 +8,9 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("nntpservice")
 public interface NntpService extends RemoteService {
-    String getMessage();
     ArrayList<NewsgroupModel> getGroupList()
         throws NntpException;
+    
+    Void subscribe(NewsgroupModel group)
+            throws NntpException;
 }
